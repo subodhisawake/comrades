@@ -1,0 +1,121 @@
+/* src/pages/Login/Login.css and src/pages/Register/Register.css */
+.auth-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: linear-gradient(to right, #8360c3, #2ebf91);
+  }
+  
+  .auth-form {
+    background: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+  }
+  
+  .auth-form h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 1.5rem;
+  }
+  
+  .auth-form input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    transition: border-color 0.3s ease;
+  }
+  
+  .auth-form input:focus {
+    outline: none;
+    border-color: #8360c3;
+  }
+  
+  .auth-form input:disabled {
+    background-color: #f5f5f5;
+    cursor: not-allowed;
+  }
+  
+  .auth-form button {
+    width: 100%;
+    padding: 10px;
+    background: linear-gradient(to right, #8360c3, #2ebf91);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: opacity 0.3s ease, transform 0.1s ease-in-out;
+  }
+  
+  .auth-form button:hover {
+    opacity: 0.9;
+  }
+  
+  .auth-form button:active {
+    transform: scale(0.98);
+  }
+  
+  .auth-form button:disabled {
+    background: #cccccc;
+    cursor: not-allowed;
+  }
+  
+  .auth-form p {
+    text-align: center;
+    margin-top: 1rem;
+  }
+  
+  .auth-form a {
+    color: #8360c3;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  
+  .auth-form a:hover {
+    text-decoration: underline;
+    color: #2ebf91;
+  }
+  
+  .error-message {
+    color: #ff4444;
+    background-color: #ffe6e6;
+    border: 1px solid #ff4444;
+    border-radius: 4px;
+    padding: 10px;
+    margin-bottom: 1rem;
+    text-align: center;
+  }
+  
+  .auth-switch {
+    margin-top: 1.5rem;
+    text-align: center;
+  }
+  
+  .location-note {
+    margin: 1rem 0;
+    color: #666;
+    font-size: 0.9rem;
+    text-align: center;
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  
+  .loading-spinner {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 3px solid rgba(255,255,255,.3);
+    border-radius: 50%;
+    border-top-color: #fff;
+    animation: spin 1s ease-in-out infinite;
+    margin-left: 10px;
+  }
+  

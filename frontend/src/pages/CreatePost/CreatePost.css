@@ -1,0 +1,44 @@
+/* src/pages/CreatePost/CreatePost.css */
+.create-post-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .map-container {
+    margin: 20px 0;
+    border-radius: 8px;
+    overflow: hidden;
+    position: relative;
+  }
+  
+  .radius-display {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    background: rgba(0,0,0,0.7);
+    color: white;
+    padding: 8px 16px;
+    border-radius: 4px;
+    z-index: 1;
+  }
+  
+  textarea {
+    width: 100%;
+    height: 100px;
+    margin: 10px 0;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+  }
+  
+  button {
+    background: linear-gradient(to right, #8360c3, #2ebf91);
+    color: white;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
