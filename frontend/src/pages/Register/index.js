@@ -3,6 +3,7 @@ import React, { useState, useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthContext';
 import api from '../../services/api';
+
 import '../Login/Login.css';
 
 const Register = () => {
@@ -56,7 +57,7 @@ const Register = () => {
       localStorage.setItem('token', response.data.accessToken);
       api.defaults.headers.common['Authorization'] = `Bearer ${response.data.accessToken}`;
       
-      navigate('/');
+      navigate('/login');
     } catch (error) {
       console.error('Registration error:', error);
       

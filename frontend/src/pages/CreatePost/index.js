@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { APIProvider, Map, useMapsLibrary } from '@vis.gl/react-google-maps';
+import { APIProvider, Map } from '@vis.gl/react-google-maps';
+import MapComponent from '../../components/core/MapView/Map';
 import api from '../../services/api';
 import './CreatePost.css';
 
@@ -7,59 +8,18 @@ const CreatePost = () => {
   const [content, setContent] = useState('');
   const [location, setLocation] = useState(null);
   const [radius, setRadius] = useState(1000);
-  const [zoom, setZoom] = useState(14);
-  const [circle, setCircle] = useState(null);
-  const core = useMapsLibrary('core');
 
   useEffect(() => {
-    if (!navigator.geolocation) {
-      alert('Geolocation is not supported by your browser');
-      return;
-    }
-
     navigator.geolocation.getCurrentPosition(
-      (position) => {
+      position => {
         setLocation({
           lat: position.coords.latitude,
           lng: position.coords.longitude
         });
       },
-      (error) => {
-        alert('Unable to retrieve your location');
-      }
+      error => alert('Enable location access to create posts')
     );
   }, []);
-
-  useEffect(() => {
-    if (!core || !location) return;
-
-    const newCircle = new core.Circle({
-      strokeColor: '#FF0000',
-      strokeOpacity: 0.8,
-      strokeWeight: 2,
-      fillColor: '#FF0000',
-      fillOpacity: 0.35,
-      center: location,
-      radius: radius,
-      map: null
-    });
-
-    setCircle(newCircle);
-    return () => newCircle.setMap(null);
-  }, [core, location, radius]);
-
-  useEffect(() => {
-    if (!circle || !location) return;
-    
-    circle.setRadius(radius);
-    circle.setCenter(location);
-  }, [circle, radius, location]);
-
-  const handleZoomChange = (zoomValue) => {
-    const newZoom = zoomValue;
-    setZoom(newZoom);
-    setRadius(Math.pow(2, 20 - newZoom) * 10);
-  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -75,11 +35,11 @@ const CreatePost = () => {
       alert('Post created successfully!');
     } catch (error) {
       console.error('Error creating post:', error);
-      alert('Failed to create post');
+      alert(error.response?.data?.message || 'Failed to create post');
     }
   };
 
-  if (!location) return <div>Loading your location...</div>;
+  if (!location) return <div>Loading map...</div>;
 
   return (
     <div className="create-post-container">
@@ -87,25 +47,32 @@ const CreatePost = () => {
       <form onSubmit={handleSubmit}>
         <textarea
           value={content}
-          onChange={(e) => setContent(e.target.value)}
-          placeholder="What do you need?"
+          onChange={e => setContent(e.target.value)}
+          placeholder="What's happening in your area?"
           required
         />
-        
+
         <div className="map-container">
-          <APIProvider apiKey={process.env.REACT_APP_GOOGLE_MAPS_API_KEY}>
+          <APIProvider 
+            apiKey={process.env.REACT_APP_GOOGLE_MAPS_API_KEY}
+            onLoad={() => console.log('Maps API loaded')}
+          >
             <Map
-              center={location}
-              zoom={zoom}
-              onZoomChanged={(ev) => handleZoomChange(ev.zoom)}
+              defaultCenter={location}
+              defaultZoom={14}
+              mapId={process.env.REACT_APP_MAP_ID}
               style={{ height: '400px', width: '100%' }}
-              onLoad={(map) => circle?.setMap(map)}
             >
-              {/* Circle will be managed through Google Maps API */}
+              <MapComponent
+                location={location}
+                radius={radius}
+                onRadiusChange={setRadius}
+                onLocationChange={setLocation}
+              />
             </Map>
           </APIProvider>
           <div className="radius-display">
-            Current Coverage: {(radius / 1000).toFixed(1)} km
+            Current Radius: {Math.round(radius)} meters
           </div>
         </div>
 
