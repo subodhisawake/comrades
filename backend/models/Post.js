@@ -51,8 +51,8 @@ const postSchema = new mongoose.Schema({
   radius: {
     type: Number,
     required: true,
-    min: 1,
-    max: 1000 // Maximum radius in meters
+    min: 100,  // Minimum 100 meters
+    max: 15000  // Maximum 5 kilometers
   },
   interactions: [interactionSchema],
   comments: [commentSchema],
