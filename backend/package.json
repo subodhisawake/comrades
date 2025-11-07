@@ -23,6 +23,7 @@
     "helmet": "^8.1.0",
     "jsonwebtoken": "^9.0.0",
     "mongoose": "^7.1.0",
+    "natural": "^8.1.0",
     "socket.io": "^4.6.1"
   },
   "devDependencies": {

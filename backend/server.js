@@ -14,8 +14,8 @@ connectDB();
 
 const app = express();
 
-// ======== Middleware ========
-app.use(helmet()); // Security headers
+// Middleware 
+app.use(helmet()); 
 app.use(cors({
   origin: process.env.FRONTEND_URL || 'http://localhost:3000',
   credentials: true,
@@ -24,23 +24,22 @@ app.use(cors({
 }));
 app.use(express.json({ limit: '10kb' })); // Body limit
 app.use(cookieParser());
-app.use(mongoSanitize()); // Sanitize data against NoSQL injections
+app.use(mongoSanitize()); 
 
-// Rate limiting
+
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
   max: 100,
   message: 'Too many requests from this IP, please try again later'
 });
-app.use('/api/', limiter); // Apply to API routes only
+app.use('/api/', limiter); 
 
-// ======== Routes ========
+// Routes
 app.use('/api/auth', require('./routes/auth.routes'));
 app.use('/api/users', require('./routes/user.routes'));
 app.use('/api/posts', require('./routes/post.routes'));
 
-// ======== Error Handling ========
-// Handle 404
+// Error Handling
 app.use('*', (req, res) => {
   res.status(404).json({
     status: 'fail',

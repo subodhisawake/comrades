@@ -3,9 +3,7 @@ const { body, validationResult } = require('express-validator');
 const { register, login } = require('../controllers/auth.controller');
 const router = express.Router();
 
-// @route   POST api/auth/register
-// @desc    Register user
-// @access  Public
+
 router.post(
   '/register',
   [
@@ -30,7 +28,7 @@ router.post(
       .isArray({ min: 2, max: 2 })
       .withMessage('Invalid coordinates format')
   ],
-  // Validation middleware
+  
   (req, res, next) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
@@ -38,12 +36,9 @@ router.post(
     }
     next();
   },
-  register // Directly use controller function
+  register
 );
 
-// @route   POST api/auth/login
-// @desc    Authenticate user & get token
-// @access  Public
 router.post(
   '/login',
   [
@@ -55,7 +50,7 @@ router.post(
       .notEmpty()
       .withMessage('Password is required')
   ],
-  // Validation middleware
+  
   (req, res, next) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
@@ -63,7 +58,7 @@ router.post(
     }
     next();
   },
-  login // Directly use controller function
+  login 
 );
 
 module.exports = router;
