@@ -1,8 +1,8 @@
 import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { AuthContext } from '../../../context/AuthContext';
-import "./Header.css";
-import logo from '../../../assets/icons/logo.png';
+import { AuthContext } from '../context/AuthContext';
+import "./../styles/Header.css";
+import logo from '../assets/logo.png';
 
 const Header = () => {
   const { user, logout } = useContext(AuthContext) || {};
@@ -28,7 +28,12 @@ const Header = () => {
         </div>
         
         <ul className={`nav-links ${mobileMenuOpen ? 'mobile-open' : ''}`}>
-          <li><Link to="/">Home</Link></li>
+          {/* Updated Home/Feed link */}
+          <li>
+            <Link to={user ? "/feed" : "/"}>
+              {user ? "Feed" : "Home"}
+            </Link>
+          </li>
           {user ? (
             <>
               <li><Link to="/create-post">Create Post</Link></li>

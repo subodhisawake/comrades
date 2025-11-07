@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Lottie from 'react-lottie-player';
-import animationData from '../../animations/Animation - 1742459445754.json';
-import './Home.css';
+import animationData from '../animations/Animation - 1742459445754.json';
+import './../styles/Home.css';
 
 const Home = () => {
   return (

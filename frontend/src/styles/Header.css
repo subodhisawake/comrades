@@ -1,0 +1,133 @@
+/* ===== HEADER CONTAINER ===== */
+.header-container {
+  width: 100%;
+  background-color: #ffffff;
+  border-bottom: 1px solid #e6e6e6;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+/* ===== NAVBAR ===== */
+.nav-bar {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0.75rem 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* ===== LOGO ===== */
+.logo-container {
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  height: 45px;
+  width: auto;
+  cursor: pointer;
+}
+
+/* ===== NAV LINKS ===== */
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  list-style: none;
+  transition: all 0.3s ease-in-out;
+}
+
+.nav-links li a {
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+  transition: color 0.2s ease-in-out;
+}
+
+.nav-links li a:hover {
+  color: #007bff;
+}
+
+/* ===== BUTTONS ===== */
+.logout-btn {
+  background-color: #ff5f5f;
+  border: none;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.logout-btn:hover {
+  background-color: #e14d4d;
+}
+
+.login-link {
+  color: #007bff;
+}
+
+.login-link:hover {
+  color: #0056b3;
+}
+
+.register-link {
+  color: #28a745;
+}
+
+.register-link:hover {
+  color: #1e7e34;
+}
+
+/* ===== MOBILE MENU BUTTON ===== */
+.mobile-menu-button {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  gap: 5px;
+}
+
+.mobile-menu-button span {
+  width: 25px;
+  height: 3px;
+  background-color: #333;
+  border-radius: 3px;
+  transition: all 0.3s ease;
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+@media (max-width: 768px) {
+  .mobile-menu-button {
+    display: flex;
+  }
+
+  .nav-links {
+    position: absolute;
+    top: 70px;
+    left: 0;
+    right: 0;
+    background-color: #fff;
+    flex-direction: column;
+    gap: 1.25rem;
+    align-items: center;
+    padding: 1.5rem 0;
+    border-top: 1px solid #e6e6e6;
+    transform: translateY(-100%);
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .nav-links.mobile-open {
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .nav-links li a,
+  .logout-btn {
+    font-size: 1.1rem;
+  }
+}

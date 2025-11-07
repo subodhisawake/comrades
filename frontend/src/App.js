@@ -4,12 +4,12 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { AuthProvider } from './context/AuthContext';
 import { APIProvider } from '@vis.gl/react-google-maps';
 import Layout from './components/Layout';
-import Home from './pages/Home';
-import Login from './pages/Login';
-import Register from './pages/Register';
-import CreatePost from './pages/CreatePost';
-import Profile from './pages/Profile';
-import Feed from './pages/Feed';
+import Home from './components/Home';
+import Login from './components/Login';
+import Register from './components/Register';
+import CreatePost from './components/CreatePost';
+import Profile from './components/Profile';
+import Feed from './components/Feed';
 
 function App() {
   return (
