@@ -1,7 +1,8 @@
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: process.env.REACT_APP_API_URL || 'http://localhost:5000/api',
+  // Vercel will inject REACT_APP_API_URL as your Render backend URL
+  baseURL: process.env.REACT_APP_API_URL || 'http://localhost:5000/api', 
   withCredentials: true
 });
 
